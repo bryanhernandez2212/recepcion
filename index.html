@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Invitados - XV Años</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1 class="sparkle-text">XV Años</h1>
+            <p class="subtitle italic">Gestión de Invitados</p>
+        </header>
+
+        <main>
+            <section class="stats-section">
+                <div class="stat-card">
+                    <span class="stat-label">Total Familias</span>
+                    <span id="total-families" class="stat-value">0</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Pases Totales</span>
+                    <span id="total-guests" class="stat-value">0</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Confirmados</span>
+                    <span id="total-attending" class="stat-value">0</span>
+                </div>
+            </section>
+
+            <section class="controls-section">
+                <div class="search-bar">
+                    <input type="text" id="search-input" placeholder="Buscar familia...">
+                </div>
+                <div class="filter-group">
+                    <button id="filter-all" class="filter-btn active">Todos</button>
+                    <button id="filter-arrived" class="filter-btn">Llegaron</button>
+                    <button id="filter-pending" class="filter-btn">Por llegar</button>
+                    <button id="filter-confirmed" class="filter-btn">Confirmados</button>
+                    <button id="filter-declined" class="filter-btn">Declinaron</button>
+                </div>
+                <button id="add-family-btn" class="primary-btn">
+                    <span class="icon">+</span> Agregar Familia
+                </button>
+            </section>
+
+            <section class="list-section">
+                <div id="guest-list" class="guest-list">
+                    <!-- Guest cards will be injected here -->
+                </div>
+            </section>
+        </main>
+
+        <div id="modal-overlay" class="modal-overlay hidden">
+            <div class="modal">
+                <h2 id="modal-title">Agregar Familia</h2>
+                <form id="family-form">
+                    <div class="form-group">
+                        <label for="family-name">Nombre de la Familia</label>
+                        <input type="text" id="family-name" required placeholder="Ej. Familia Pérez">
+                    </div>
+                    <div class="form-group">
+                        <label for="guest-count">Número de Invitados</label>
+                        <input type="number" id="guest-count" required min="1" value="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="table-number">Número de Mesa</label>
+                        <input type="number" id="table-number" placeholder="Ej. 12" min="1">
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" id="cancel-btn" class="secondary-btn">Cancelar</button>
+                        <button type="submit" class="primary-btn">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="checkin-modal" class="modal-overlay hidden">
+            <div class="modal checkin-card">
+                <div class="checkin-header">
+                    <h2 id="checkin-family-name">Familia Pérez</h2>
+                    <span id="checkin-status-badge" class="status-badge">Pendiente</span>
+                </div>
+                <div class="checkin-body">
+                    <div class="big-table-circle">
+                        <span class="label">Mesa</span>
+                        <span id="checkin-table-number" class="number">12</span>
+                    </div>
+                    <p id="checkin-guest-info" class="guest-info">4 invitados</p>
+                </div>
+                <div class="checkin-actions">
+                    <button id="mark-arrived-btn" class="primary-btn wide-btn">¡Ya llegaron!</button>
+                    <button id="close-checkin-btn" class="secondary-btn wide-btn">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    
+    <script src="script.js"></script>
+</body>
+</html>
