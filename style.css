@@ -29,9 +29,9 @@ body {
 }
 
 .app-container {
-    max-width: 800px;
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 2rem 1rem;
+    padding: 2rem 2.5rem;
 }
 
 header {
@@ -171,7 +171,9 @@ input:focus {
 /* Guest List */
 .guest-list {
     display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
     gap: 1rem;
+    align-items: start;
 }
 
 .guest-card {
@@ -408,4 +410,145 @@ input:focus {
     background: var(--primary-color);
     color: white;
     border-color: var(--primary-color);
+}
+
+/* Tabs */
+.tabs {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+}
+
+.tab-btn {
+    background: transparent;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 0.6rem 1.4rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.tab-btn.active {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+.tab-panel.hidden {
+    display: none;
+}
+
+/* Mesas */
+.mesa-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+    align-items: start;
+}
+
+.mesa-tile {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    border: 2px solid var(--accent-color);
+    padding: 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.mesa-tile:hover {
+    transform: translateY(-3px);
+    border-color: var(--primary-color);
+}
+
+.mesa-tile.empty {
+    opacity: 0.5;
+    cursor: default;
+}
+
+.mesa-tile.empty:hover {
+    transform: none;
+    border-color: var(--accent-color);
+}
+
+.mesa-tile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.6rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--accent-color);
+}
+
+.mesa-tile .mesa-number {
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.mesa-tile .mesa-info {
+    font-size: 0.75rem;
+    color: var(--text-light);
+}
+
+.mesa-family-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.mesa-family-list li {
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    border-radius: 6px;
+    padding: 0.15rem 0.3rem;
+}
+
+.mesa-family-list li.arrived {
+    color: #2e7d32;
+}
+
+.mesa-family-list li.match {
+    background: var(--accent-color);
+    font-weight: 600;
+}
+
+.mesa-family-list .mesa-family-pases {
+    color: var(--text-light);
+    font-size: 0.8rem;
+    white-space: nowrap;
+}
+
+.mesa-empty-text {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    text-align: center;
+    margin: 0;
+}
+
+/* WhatsApp button */
+.whatsapp-btn {
+    color: #25D366;
+    text-decoration: none;
+    display: inline-flex;
+}
+
+.whatsapp-btn[disabled] {
+    color: #ccc;
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.status-badge.confirmed {
+    background: #e8f5e9;
+    color: #2e7d32;
 }
