@@ -17,9 +17,9 @@ async function apiRequest(path, { method = 'GET', body } = {}) {
 const WHATSAPP_ICON = `<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A7.85 7.85 0 0 0 12.05 4a7.94 7.94 0 0 0-6.87 11.93L4 20l4.2-1.1a7.9 7.9 0 0 0 3.85 1h.01a7.94 7.94 0 0 0 5.54-13.58zm-5.55 12.2h-.01a6.6 6.6 0 0 1-3.36-.92l-.24-.14-2.5.65.67-2.43-.16-.25a6.58 6.58 0 0 1 10.16-8.14 6.55 6.55 0 0 1 1.93 4.65 6.6 6.6 0 0 1-6.49 6.58zm3.6-4.93c-.2-.1-1.17-.58-1.35-.64-.18-.07-.31-.1-.44.1-.13.19-.5.64-.62.77-.11.13-.23.14-.42.05-.2-.1-.85-.31-1.61-.99a6.02 6.02 0 0 1-1.11-1.38c-.12-.2 0-.31.1-.42.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.15.04-.28-.02-.4-.06-.11-.35-.85-.5-1.19-.13-.32-.27-.28-.37-.28h-.32c-.11 0-.29.04-.44.2-.15.17-.6.58-.6 1.42 0 .83.61 1.63.7 1.75.08.11 1.13 1.72 2.75 2.35 1.37.53 1.65.42 1.95.4.3-.03.98-.4 1.11-.79.14-.38.14-.71.1-.78-.04-.07-.16-.11-.36-.2z"/></svg>`;
 
 function buildInvitationMessage(name, isFamilia) {
-    const greeting = isFamilia ? `¡Hola, Familia ${name}!` : `¡Hola, ${name}!`;
+    const greeting = `¡Hola, ${name}!`;
     const instructions = isFamilia
-        ? `\n\nElijan el nombre de su familia para ver sus pases y confirmar su asistencia.`
+        ? `\n\nBusquen el nombre "${name}" para ver sus pases y confirmar su asistencia.`
         : '';
     return `${greeting} Espero se encuentren muy bien.
 
