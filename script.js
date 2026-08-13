@@ -23,7 +23,7 @@ function buildInvitationMessage(name, isFamilia) {
         : '';
     return `${greeting} Espero se encuentren muy bien.
 
-Les mando una cordial invitación para mi fiesta de *XV años* — sería muy especial poder compartir este día tan importante junto a ustedes.
+Les mando una cordial invitación para mi fiesta de *XV años - Yareni Guadalupe* — sería muy especial poder compartir este día tan importante junto a ustedes.
 
 Aquí pueden ver todos los detalles de la celebración:
 https://yareniguadalupe.vercel.app/${instructions}
