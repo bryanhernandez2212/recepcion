@@ -28,13 +28,13 @@ Crear familia
 Campo	Tipo	Notas
 name	string	Requerido
 count	number	Requerido — personas invitadas
-table	number	Opcional. Entero 1–24, o 400
+table	number	Opcional. Entero positivo (ya no hay tope de 24)
 telefono	string	Opcional — habilita whatsappLink
 PATCH
 /guests/:id
 Actualizar (confirmar asistencia, cambiar mesa, agregar teléfono, etc.)
 
-Acepta cualquier subconjunto de los campos de arriba. Mismo válido 1–24 en table.
+Acepta cualquier subconjunto de los campos de arriba. `table` ya acepta cualquier entero positivo, sin tope de 24.
 
 GET
 /guests/:id

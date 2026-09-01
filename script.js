@@ -50,6 +50,16 @@ function renderStatusBadge(status) {
     return `<span class="status-badge">⏳ Pendiente</span>`;
 }
 
+function renderStatusIcon(status) {
+    if (status === 'confirmed') {
+        return `<span class="mesa-status-icon confirmed" title="Confirmado">✓</span>`;
+    }
+    if (status === 'declined') {
+        return `<span class="mesa-status-icon declined" title="Declinó">✕</span>`;
+    }
+    return `<span class="mesa-status-icon pending" title="Pendiente">⏳</span>`;
+}
+
 // State
 let familias = [];
 let mesas = [];
@@ -238,8 +248,8 @@ function renderList(filterText = '') {
 function validTable(value) {
     if (!value) return null;
     const n = parseInt(value, 10);
-    if (n < 1 || n > 24) {
-        throw new Error('El número de mesa debe estar entre 1 y 24.');
+    if (n < 1) {
+        throw new Error('El número de mesa debe ser mayor a 0.');
     }
     return n;
 }
@@ -431,7 +441,7 @@ function renderMesas(filterText = '') {
             ? '<p class="mesa-empty-text">Sin asignar</p>'
             : `<ul class="mesa-family-list">${mesa.familias.map(f => `
                 <li class="${f.arrived ? 'arrived' : ''} ${search && f.name.toLowerCase().includes(search) ? 'match' : ''}">
-                    <span>${f.name}</span>
+                    <span>${renderStatusIcon(f.status)} ${f.name}</span>
                     <span class="mesa-family-pases">${f.confirmados ?? f.pases}</span>
                 </li>
             `).join('')}</ul>`;
@@ -470,6 +480,7 @@ function renderMesaDetail() {
         card.innerHTML = `
             <div class="family-info">
                 <h3>${family.name}</h3>
+                ${renderStatusBadge(family.status)}
                 <span class="guest-count-badge">${family.confirmados != null ? `${family.confirmados} conf. de ` : ''}${family.pases} pase(s)</span>
             </div>
             <div class="card-actions">

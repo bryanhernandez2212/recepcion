@@ -543,6 +543,23 @@ input:focus {
     white-space: nowrap;
 }
 
+.mesa-status-icon {
+    display: inline-block;
+    font-size: 0.8rem;
+}
+
+.mesa-status-icon.confirmed {
+    color: #2e7d32;
+}
+
+.mesa-status-icon.pending {
+    color: #999;
+}
+
+.mesa-status-icon.declined {
+    color: #c0392b;
+}
+
 .mesa-empty-text {
     font-size: 0.85rem;
     color: var(--text-light);
