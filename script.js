@@ -83,6 +83,7 @@ const checkinStatusBadge = document.getElementById('checkin-status-badge');
 const checkinTableNumber = document.getElementById('checkin-table-number');
 const checkinGuestInfo = document.getElementById('checkin-guest-info');
 const markArrivedBtn = document.getElementById('mark-arrived-btn');
+const confirmFamilyBtn = document.getElementById('confirm-family-btn');
 const closeCheckinBtn = document.getElementById('close-checkin-btn');
 
 // Mesas Elements
@@ -355,12 +356,34 @@ function renderCheckinModal(family) {
         markArrivedBtn.style.background = 'linear-gradient(135deg, var(--primary-color), var(--secondary-color))';
     }
 
+    confirmFamilyBtn.style.display = family.status === 'confirmed' ? 'none' : '';
+
     markArrivedBtn.onclick = async () => {
         try {
             const updated = await apiRequest(`/guests/${family.id}`, { method: 'PATCH', body: { arrived: !family.arrived } });
             Object.assign(family, updated);
             renderList(searchInput.value);
             renderCheckinModal(family);
+        } catch (err) {
+            alert(err.message);
+        }
+    };
+
+    confirmFamilyBtn.onclick = async () => {
+        const input = prompt(`¿Cuántos de los ${family.count} pases confirman asistencia?`, family.attendingCount ?? family.count);
+        if (input === null) return;
+        const attendingCount = parseInt(input, 10);
+        if (isNaN(attendingCount) || attendingCount < 0 || attendingCount > family.count) {
+            alert(`Ingresa un número entre 0 y ${family.count}.`);
+            return;
+        }
+        try {
+            const updated = await apiRequest(`/guests/${family.id}`, { method: 'PATCH', body: { status: 'confirmed', attendingCount } });
+            Object.assign(family, updated);
+            renderList(searchInput.value);
+            renderCheckinModal(family);
+            loadResumen();
+            loadPendientes();
         } catch (err) {
             alert(err.message);
         }
