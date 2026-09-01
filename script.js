@@ -40,6 +40,16 @@ function renderWhatsappBtn(telefono, name, isFamilia) {
     return `<button type="button" class="icon-btn whatsapp-btn" disabled title="Sin teléfono">${WHATSAPP_ICON}</button>`;
 }
 
+function renderStatusBadge(status) {
+    if (status === 'confirmed') {
+        return `<span class="status-badge confirmed">✓ Confirmado</span>`;
+    }
+    if (status === 'declined') {
+        return `<span class="status-badge declined">✕ Declinó</span>`;
+    }
+    return `<span class="status-badge">⏳ Pendiente</span>`;
+}
+
 // State
 let familias = [];
 let mesas = [];
@@ -206,6 +216,7 @@ function renderList(filterText = '') {
         card.innerHTML = `
             <div class="family-info">
                 <h3>${family.name}</h3>
+                ${renderStatusBadge(family.status)}
                 <span class="guest-count-badge">${guestInfoText}</span>
                 ${family.table ? `<span class="table-badge">Mesa ${family.table}</span>` : ''}
             </div>
@@ -491,9 +502,7 @@ function renderAmigos(filterText = '') {
     filtered.forEach(amigo => {
         const card = document.createElement('div');
         card.className = 'guest-card';
-        const badge = amigo.status === 'confirmed'
-            ? `<span class="status-badge confirmed">Confirmado</span>`
-            : `<span class="status-badge">Pendiente</span>`;
+        const badge = renderStatusBadge(amigo.status);
         card.innerHTML = `
             <div class="family-info">
                 <h3>${amigo.name}</h3>

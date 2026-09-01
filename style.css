@@ -355,6 +355,11 @@ input:focus {
     color: #2e7d32;
 }
 
+.status-badge.declined {
+    background: #fdecea;
+    color: #c0392b;
+}
+
 .big-table-circle {
     width: 150px;
     height: 150px;
