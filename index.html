@@ -14,6 +14,7 @@
         <header>
             <h1 class="sparkle-text">XV Años</h1>
             <p class="subtitle italic">Gestión de Invitados</p>
+            <a id="export-pendientes-link" href="#" target="_blank" rel="noopener" class="secondary-btn export-btn">Exportar pendientes (CSV)</a>
         </header>
 
         <nav class="tabs">
@@ -40,6 +41,10 @@
                     <div class="stat-card">
                         <span class="stat-label">Personas Confirmadas</span>
                         <span id="stat-personas" class="stat-value">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">Familias Pendientes</span>
+                        <span id="stat-pendientes-familias" class="stat-value">0</span>
                     </div>
                 </section>
 
@@ -80,6 +85,12 @@
             </div>
 
             <div id="tab-amigos" class="tab-panel hidden">
+                <section class="stats-section compact">
+                    <div class="stat-card">
+                        <span class="stat-label">Amigos Pendientes</span>
+                        <span id="stat-pendientes-amigos" class="stat-value">0</span>
+                    </div>
+                </section>
                 <section class="controls-section">
                     <div class="search-bar">
                         <input type="text" id="amigo-search-input" placeholder="Buscar amigo...">

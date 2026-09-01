@@ -61,6 +61,10 @@ const statFamiliasEl = document.getElementById('stat-familias');
 const statPasesEl = document.getElementById('stat-pases');
 const statAmigosEl = document.getElementById('stat-amigos');
 const statPersonasEl = document.getElementById('stat-personas');
+const statPendientesFamiliasEl = document.getElementById('stat-pendientes-familias');
+const statPendientesAmigosEl = document.getElementById('stat-pendientes-amigos');
+const exportPendientesLink = document.getElementById('export-pendientes-link');
+exportPendientesLink.href = `${API_BASE}/pendientes/export`;
 
 // Check-in Modal Elements
 const checkinModal = document.getElementById('checkin-modal');
@@ -144,6 +148,17 @@ async function loadResumen() {
         statPasesEl.textContent = '-';
         statAmigosEl.textContent = '-';
         statPersonasEl.textContent = '-';
+    }
+}
+
+async function loadPendientes() {
+    try {
+        const pendientes = await apiRequest('/pendientes');
+        statPendientesFamiliasEl.textContent = pendientes.familias?.total ?? 0;
+        statPendientesAmigosEl.textContent = pendientes.amigos?.total ?? 0;
+    } catch (err) {
+        statPendientesFamiliasEl.textContent = '-';
+        statPendientesAmigosEl.textContent = '-';
     }
 }
 
@@ -262,6 +277,7 @@ familyForm.addEventListener('submit', async (e) => {
         modalOverlay.classList.add('hidden');
         await loadFamilias();
         loadResumen();
+        loadPendientes();
     } catch (err) {
         alert(err.message);
     }
@@ -286,6 +302,7 @@ window.deleteFamily = async (id) => {
             await apiRequest(`/guests/${id}`, { method: 'DELETE' });
             await loadFamilias();
             loadResumen();
+            loadPendientes();
         } catch (err) {
             alert(err.message);
         }
@@ -513,6 +530,7 @@ window.deleteAmigo = async (id) => {
             await apiRequest(`/guests/${id}`, { method: 'DELETE' });
             await loadAmigos();
             loadResumen();
+            loadPendientes();
         } catch (err) {
             alert(err.message);
         }
@@ -558,6 +576,7 @@ amigoForm.addEventListener('submit', async (e) => {
         amigoModalOverlay.classList.add('hidden');
         await loadAmigos();
         loadResumen();
+        loadPendientes();
     } catch (err) {
         alert(err.message);
     }
@@ -581,3 +600,4 @@ searchInput.addEventListener('input', (e) => {
 // Initial Load
 loadFamilias();
 loadResumen();
+loadPendientes();
