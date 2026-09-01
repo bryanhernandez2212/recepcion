@@ -42,6 +42,12 @@ DELETE
 /guests/:id
 Sin cambios — obtener o borrar una familia por id.
 
+GET
+/familias/export
+Descargar CSV de todas las familias
+
+Descarga un CSV con todas las familias (tipo === "familia"), confirmadas y pendientes por igual — no filtra por status. Reutiliza los mismos helpers, columnas y BOM UTF-8 que ya usa /pendientes/export, así que el CSV abre bien en Excel. Documentado también en el Swagger del backend.
+
 02
 
 Enviar invitación por WhatsApp

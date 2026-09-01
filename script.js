@@ -86,6 +86,9 @@ const statPendientesAmigosEl = document.getElementById('stat-pendientes-amigos')
 const exportPendientesLink = document.getElementById('export-pendientes-link');
 exportPendientesLink.href = `${API_BASE}/pendientes/export`;
 
+const exportFamiliasLink = document.getElementById('export-familias-link');
+exportFamiliasLink.href = `${API_BASE}/familias/export`;
+
 // Check-in Modal Elements
 const checkinModal = document.getElementById('checkin-modal');
 const checkinFamilyName = document.getElementById('checkin-family-name');
